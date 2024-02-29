@@ -5,13 +5,13 @@ import { useLocation } from "react-router-dom";
 
 /* APPLICATION */
 import { Modal } from "./Modal";
-import { ModalHeader } from "./ModalHeader";
-import { ModalRow } from "./ModalRow";
-import { ModalInput } from "./ModalInput";
-import { ModalTextarea } from "./ModalTextarea";
-import { ModalFooter } from "./ModalFooter";
-import { tasksUpdated } from "../features/tasksSlice";
-import { categoriesUpdated } from "../features/categoriesSlice";
+import { ModalHeader } from "./ui/ModalHeader";
+import { ModalRow } from "./ui/ModalRow";
+import { ModalInput } from "./ui/ModalInput";
+import { ModalTextarea } from "./ui/ModalTextarea";
+import { ModalFooter } from "./ui/ModalFooter";
+import { tasksUpdated } from "../../store/slices/tasksSlice";
+import { categoriesUpdated } from "../../store/slices/categoriesSlice";
 
 interface ModalEditItemProps {
   item: {

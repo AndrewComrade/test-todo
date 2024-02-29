@@ -3,9 +3,9 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 
 /* APPLICATION */
-import edit from "../icons/edit.svg";
-import remove from "../icons/remove.svg";
-import { selectAllCategories } from "../features/categoriesSlice";
+import edit from "../../icons/edit.svg";
+import remove from "../../icons/remove.svg";
+import { selectAllCategories } from "../../store/slices/categoriesSlice";
 import { ModalEditItem } from "../Modal/ModalEditItem";
 import { ModalRemoveItem } from "../Modal/ModalRemoveItem";
 
