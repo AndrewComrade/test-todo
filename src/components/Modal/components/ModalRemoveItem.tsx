@@ -3,12 +3,12 @@ import { useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
 
 /* APPLICATION */
-import { Modal } from "./Modal";
-import { ModalHeader } from "./ui/ModalHeader";
-import { ModalText } from "./ui/ModalText";
-import { ModalFooter } from "./ui/ModalFooter";
-import { tasksRemoved, tasksClearedCategories } from "../../store/slices/tasksSlice";
-import { categoriesRemoved } from "../../store/slices/categoriesSlice";
+import { Modal } from "../Modal";
+import { ModalHeader } from "../ui/ModalHeader";
+import { ModalText } from "../ui/ModalText";
+import { ModalFooter } from "../ui/ModalFooter";
+import { tasksRemoved, tasksClearedCategories } from "../../../store/slices/tasksSlice";
+import { categoriesRemoved } from "../../../store/slices/categoriesSlice";
 
 interface ModalRemoveItemProps {
   item: {

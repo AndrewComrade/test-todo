@@ -4,14 +4,14 @@ import { useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
 
 /* APPLICATION */
-import { Modal } from "./Modal";
-import { ModalHeader } from "./ui/ModalHeader";
-import { ModalInput } from "./ui/ModalInput";
-import { ModalRow } from "./ui/ModalRow";
-import { ModalTextarea } from "./ui/ModalTextarea";
-import { ModalFooter } from "./ui/ModalFooter";
-import { tasksAdded } from "../../store/slices/tasksSlice";
-import { categoriesAdded } from "../../store/slices/categoriesSlice";
+import { Modal } from "../Modal";
+import { ModalHeader } from "../ui/ModalHeader";
+import { ModalInput } from "../ui/ModalInput";
+import { ModalRow } from "../ui/ModalRow";
+import { ModalTextarea } from "../ui/ModalTextarea";
+import { ModalFooter } from "../ui/ModalFooter";
+import { tasksAdded } from "../../../store/slices/tasksSlice";
+import { categoriesAdded } from "../../../store/slices/categoriesSlice";
 
 interface ModalCreateItemProps {
   active: boolean;

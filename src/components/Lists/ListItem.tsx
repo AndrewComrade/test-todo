@@ -6,8 +6,8 @@ import { useSelector } from "react-redux";
 import edit from "../../icons/edit.svg";
 import remove from "../../icons/remove.svg";
 import { selectAllCategories } from "../../store/slices/categoriesSlice";
-import { ModalEditItem } from "../Modal/ModalEditItem";
-import { ModalRemoveItem } from "../Modal/ModalRemoveItem";
+import { ModalEditItem } from "../Modal/components/ModalEditItem";
+import { ModalRemoveItem } from "../Modal/components/ModalRemoveItem";
 
 interface ListItemProps {
   item: {
