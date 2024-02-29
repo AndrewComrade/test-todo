@@ -3,16 +3,18 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { v4 as uuidv4 } from "uuid";
 
 /* APPLICATION */
-import { RootState } from "../store";
+import { RootState } from "../../../store/store";
 
-export interface CategoriesState {
+export interface Task {
   id: string;
   name: string;
   description: string;
   category: string;
 }
 
-const initialState: CategoriesState[] = [
+export type TasksState = Task[]
+
+const initialState: TasksState = [
   {
     id: "dcf6c7ea-56fe-4e36-960b-686ebf86d651",
     name: "Задача",
@@ -37,15 +39,15 @@ export const tasksSlice = createSlice({
   name: "tasks",
   initialState,
   reducers: {
-    tasksAdded: (state, action) => {
+    tasksAdded: (state: TasksState, action: PayloadAction<Omit<Task, "id">>) => {
       state.push({
         id: uuidv4(),
         ...action.payload,
       });
     },
-    tasksUpdated: (state, action) => {
-      const { id, name, description, category } = action.payload,
-        existingTask = state.find((task) => task.id === id);
+    tasksUpdated: (state: TasksState, action: PayloadAction<Task>) => {
+      const { id, name, description, category } = action.payload;
+      const existingTask = state.find((task) => task.id === id);
 
       if (existingTask) {
         existingTask.name = name;
@@ -53,14 +55,14 @@ export const tasksSlice = createSlice({
         existingTask.category = category;
       }
     },
-    tasksRemoved: (state, action) => {
-      let rm = (el: CategoriesState, i: number, arr: CategoriesState[]) =>
+    tasksRemoved: (state: TasksState, action: PayloadAction<string>) => {
+      let rm = (el: Task, i: number, arr: TasksState) =>
           el.id === action.payload,
         rmTaskIndex = state.findIndex(rm);
 
       state.splice(rmTaskIndex, 1);
     },
-    tasksClearedCategories: (state, action) => {
+    tasksClearedCategories: (state: TasksState, action: PayloadAction<string>) => {
       state.map((task) => {
         if (task.category === action.payload) task.category = "";
       });

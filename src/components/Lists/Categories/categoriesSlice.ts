@@ -3,15 +3,17 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { v4 as uuidv4 } from "uuid";
 
 /* APPLICATION */
-import { RootState } from "../store";
+import { RootState } from "../../../store/store";
 
-export interface CategoriesState {
+export interface Category {
   id: string;
   name: string;
   description: string;
 }
 
-const initialState: CategoriesState[] = [
+export type CategoriesState = Category[]
+
+const initialState: CategoriesState = [
   {
     id: "d485a644-5a24-4f55-b3f7-a083338be879",
     name: "Категория",
@@ -33,15 +35,15 @@ export const categoriesSlice = createSlice({
   name: "categories",
   initialState,
   reducers: {
-    categoriesAdded: (state, action) => {
+    categoriesAdded: (state: CategoriesState, action: PayloadAction<Omit<Category, "id">>) => {
       state.push({
         id: uuidv4(),
         ...action.payload,
       });
     },
-    categoriesUpdated: (state, action) => {
-      const { id, name, description } = action.payload,
-        existingCategory = state.find((category) => category.id === id);
+    categoriesUpdated: (state: CategoriesState, action: PayloadAction<Category>) => {
+      const { id, name, description } = action.payload
+      const existingCategory = state.find((category) => category.id === id);
 
       if (existingCategory) {
         existingCategory.name = name;
@@ -49,10 +51,10 @@ export const categoriesSlice = createSlice({
       }
     },
     categoriesRemoved: (
-      state: CategoriesState[],
+      state: CategoriesState,
       action: PayloadAction<string>
     ) => {
-      let rm = (el: CategoriesState, i: number, arr: CategoriesState[]) =>
+      let rm = (el: Category, i: number, arr: Category[]) =>
           el.id === action.payload,
         rmTaskIndex = state.findIndex(rm);
 

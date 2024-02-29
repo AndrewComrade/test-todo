@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 
 /* APPLICATION */
 import down from "../../../icons/down.svg";
-import { selectAllCategories } from "../../../store/slices/categoriesSlice";
+import { selectAllCategories } from "../../Lists/Categories/categoriesSlice";
 
 interface ModalDropdownProps {
   selected: string | undefined;

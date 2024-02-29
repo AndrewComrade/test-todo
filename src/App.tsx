@@ -4,8 +4,8 @@ import { Route, Routes } from "react-router-dom";
 /* APPLICATION */
 import "./App.css";
 import { Header } from "./components/Header/Header";
-import { Tasks } from "./components/Lists/Tasks";
-import { Categories } from "./components/Lists/Categories";
+import { Tasks } from "./components/Lists/Tasks/Tasks";
+import { Categories } from "./components/Lists/Categories/Categories";
 
 function App() {
   return (

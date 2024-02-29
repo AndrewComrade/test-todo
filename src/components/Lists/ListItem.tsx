@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 /* APPLICATION */
 import edit from "../../icons/edit.svg";
 import remove from "../../icons/remove.svg";
-import { selectAllCategories } from "../../store/slices/categoriesSlice";
+import { selectAllCategories } from "./Categories/categoriesSlice";
 import { ModalEditItem } from "../Modal/components/ModalEditItem";
 import { ModalRemoveItem } from "../Modal/components/ModalRemoveItem";
 
