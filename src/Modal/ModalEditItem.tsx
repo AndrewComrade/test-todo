@@ -29,12 +29,29 @@ export const ModalEditItem: React.FC<ModalEditItemProps> = ({
   active,
   setActive,
 }) => {
-  const dispatch = useDispatch(),
-    { pathname } = useLocation(),
-    isCategories = pathname.includes("categories"),
-    [name, setName] = useState(item.name),
-    [selected, setSelected] = useState(item.category || ""),
-    [description, setDescription] = useState(item.description);
+  const dispatch = useDispatch();
+  const { pathname } = useLocation();
+  const isCategories = pathname.includes("categories");
+  const [name, setName] = useState(item.name);
+  const [selected, setSelected] = useState(item.category || "");
+  const [description, setDescription] = useState(item.description);
+
+  const handleSubmit = () => {
+    if  (!name) {
+      return alert("Имя обязательно")
+    }
+    if  (isCategories) {
+      dispatch(categoriesUpdated({ id: item.id, name, description }))
+    } else {
+      dispatch(tasksUpdated({
+        id: item.id,
+        name,
+        description,
+        category: selected,
+      }))
+    }
+    setActive(false);
+  }
 
   return (
     <Modal item={item} active={active} setActive={setActive}>
@@ -62,19 +79,7 @@ export const ModalEditItem: React.FC<ModalEditItemProps> = ({
         setActive={setActive}
         submitBtnText="Сохранить"
         size="large"
-        onSubmit={() => {
-          dispatch(
-            isCategories
-              ? categoriesUpdated({ id: item.id, name, description })
-              : tasksUpdated({
-                  id: item.id,
-                  name,
-                  description,
-                  category: selected,
-                })
-          );
-          setActive(false);
-        }}
+        onSubmit={handleSubmit}
       />
     </Modal>
   );
