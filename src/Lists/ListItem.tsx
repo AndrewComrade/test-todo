@@ -52,7 +52,7 @@ export const ListItem: React.FC<ListItemProps> = ({ item }) => {
           <button
             className="list-item-col2__btn"
             onClick={() => {
-              removeModalActive = true;
+              setRemoveModalActive(true);
             }}
           >
             <img src={remove} alt="remove" />
