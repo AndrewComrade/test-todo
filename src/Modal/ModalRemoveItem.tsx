@@ -26,26 +26,29 @@ export const ModalRemoveItem: React.FC<ModalRemoveItemProps> = ({
   active,
   setActive,
 }) => {
-  const dispatch = useDispatch(),
-    { pathname } = useLocation(),
-    isCategories = pathname.includes("categories"),
-    text = `Вы уверены, что хотите удалить задачу "${item.name}"?`;
+  const dispatch = useDispatch();
+  const { pathname } = useLocation();
+  const isCategories = pathname.includes("categories");
+  const title = `Удаление ${isCategories ? "категории" : "задачи"}`
+  const text = `Вы уверены, что хотите удалить ${isCategories ? "категорию" : "задачу"} "${item.name}"?`;
+
+  const handleSubmit = () => {
+    if (isCategories) {
+      dispatch(categoriesRemoved(item.id));
+      dispatch(tasksClearedCategories(item.id));
+    } else {
+      dispatch(tasksRemoved(item.id))
+    }
+  }
 
   return (
     <Modal item={item} active={active} setActive={setActive}>
-      <ModalHeader setActive={setActive} title={"Удаление задачи"} />
+      <ModalHeader setActive={setActive} title={title} />
       <ModalText text={text} />
       <ModalFooter
         setActive={setActive}
         submitBtnText="Да"
-        onSubmit={
-          isCategories
-            ? () => {
-                dispatch(categoriesRemoved(item.id));
-                dispatch(tasksClearedCategories(item.id));
-              }
-            : () => dispatch(tasksRemoved(item.id))
-        }
+        onSubmit={handleSubmit}
       />
     </Modal>
   );
